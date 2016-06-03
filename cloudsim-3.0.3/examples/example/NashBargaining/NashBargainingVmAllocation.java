@@ -42,7 +42,7 @@ public class NashBargainingVmAllocation extends org.cloudbus.cloudsim.VmAllocati
 		}
 
 		return vm_allocated;
-	}
+	} 
 
 	@Override
 	public boolean allocateHostForVm(Vm vm, Host host) 
