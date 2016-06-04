@@ -40,6 +40,8 @@ public class NashBargainingVmAllocation extends org.cloudbus.cloudsim.VmAllocati
 		if (host != null) {
 			vm_allocated = this.allocateHostForVm(vm, host);
 		}
+		
+		
 
 		return vm_allocated;
 	} 
