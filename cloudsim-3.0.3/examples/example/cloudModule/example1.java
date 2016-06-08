@@ -53,7 +53,8 @@ public class example1 {
 	/**
 	 * Creates main() to run this example.
 	 *
-	 * @param args the args
+	 * @param args
+	 *            the args
 	 */
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -63,7 +64,7 @@ public class example1 {
 		try {
 			// First step: Initialize the CloudSim package. It should be called
 			// before creating any entities.
-			int num_user = 1; // number of cloud users
+			int num_user = 10; // number of cloud users
 			Calendar calendar = Calendar.getInstance();
 			boolean trace_flag = false; // mean trace events
 
@@ -81,7 +82,7 @@ public class example1 {
 
 			// Fourth step: Create one virtual machine
 			vmlist = new ArrayList<Vm>();
-                        //----------------------------------------------VM 0
+			// ----------------------------------------------VM 0
 			// VM description
 			int vmid = 0;
 			int mips = 2000;
@@ -93,14 +94,13 @@ public class example1 {
 
 			// create VM
 			Vm vm = new Vm(vmid, brokerId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
-                        
+
 			// add the VM to the vmList
 			vmlist.add(vm);
 
-			
-                        //---------------------------------------------- END VM 0
-                        
-                        //----------------------------------------------VM 1
+			// ---------------------------------------------- END VM 0
+
+			// ----------------------------------------------VM 1
 			// VM description
 			vmid = 1;
 			mips = 2000;
@@ -112,16 +112,15 @@ public class example1 {
 
 			// create VM
 			vm = new Vm(vmid, brokerId, mips, pesNumber1, ram1, bw, size1, vmm, new CloudletSchedulerTimeShared());
-                        
+
 			// add the VM to the vmList
 			vmlist.add(vm);
 
-                        //---------------------------------------------- END VM 1
-                      
-                        
+			// ---------------------------------------------- END VM 1
+
 			// submit vm list to the broker
 			broker.submitVmList(vmlist);
-                        
+
 			// Fifth step: Create one Cloudlet
 			cloudletList = new ArrayList<Cloudlet>();
 
@@ -132,36 +131,40 @@ public class example1 {
 			long outputSize = 200;
 			UtilizationModel utilizationModel = new UtilizationModelFull();
 
-			Cloudlet cloudlet = new Cloudlet(id, length, pesNumber, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
+			Cloudlet cloudlet = new Cloudlet(id, length, pesNumber, fileSize, outputSize, utilizationModel,
+					utilizationModel, utilizationModel);
 			cloudlet.setUserId(brokerId);
 			cloudlet.setVmId(0);
-                        Cloudlet cloudlet1 = new Cloudlet(id, length, pesNumber, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
+			Cloudlet cloudlet1 = new Cloudlet(id, length, pesNumber, fileSize, outputSize, utilizationModel,
+					utilizationModel, utilizationModel);
 			cloudlet1.setUserId(brokerId);
 			cloudlet1.setVmId(1);
 			// add the cloudlet to the list
 			cloudletList.add(cloudlet);
 			cloudletList.add(cloudlet1);
-                        //----------------------------------------------------------------------------end Cloudlet 0
-                        // Cloudlet 1 properties
+			// ----------------------------------------------------------------------------end
+			// Cloudlet 0
+			// Cloudlet 1 properties
 			id = 1;
-			length = 90000000; 
+			length = 90000000;
 			fileSize = 600;
 			outputSize = 300;
 			utilizationModel = new UtilizationModelFull();
 
-			Cloudlet cloudlet2 = new Cloudlet(id, length, pesNumber1, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
+			Cloudlet cloudlet2 = new Cloudlet(id, length, pesNumber1, fileSize, outputSize, utilizationModel,
+					utilizationModel, utilizationModel);
 			cloudlet2.setUserId(brokerId);
 			cloudlet2.setVmId(0);
-                        Cloudlet cloudlet3 = new Cloudlet(id, length, pesNumber1, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
+			Cloudlet cloudlet3 = new Cloudlet(id, length, pesNumber1, fileSize, outputSize, utilizationModel,
+					utilizationModel, utilizationModel);
 			cloudlet3.setUserId(brokerId);
 			cloudlet3.setVmId(1);
 			// add the cloudlet to the list
 			cloudletList.add(cloudlet2);
 			cloudletList.add(cloudlet3);
-                        //----------------------------------------------------------------------------end Cloudlet 1
+			// ----------------------------------------------------------------------------end
+			// Cloudlet 1
 
-                        
-                        
 			// submit cloudlet list to the broker
 			broker.submitCloudletList(cloudletList);
 
@@ -170,39 +173,36 @@ public class example1 {
 
 			CloudSim.stopSimulation();
 
-			//Final step: Print results when simulation is over
+			// Final step: Print results when simulation is over
 			List<Cloudlet> newList = broker.getCloudletReceivedList();
 			printCloudletList(newList);
-                        
-                        
-                        //---------------------------------------------------------------------------------------
-                        
-                        CloudModule cm = new CloudModule();
-                          
-                        
-                            double time = cloudlet.getFinishTime() - cloudlet.getExecStartTime();
-                            cm.searchBestTypeAmazon(ram, pesNumber,time,size);
-                            cm.searchBestTypeGoogle(ram, pesNumber, time, size);
-                            cm.searchBestTypeAzure(ram, pesNumber, time, size);
-                            
-                            time = cloudlet.getFinishTime() - cloudlet.getExecStartTime();
-                            cm.searchBestTypeAmazon(ram1, pesNumber1,time,size1);
-                            cm.searchBestTypeGoogle(ram1, pesNumber1, time, size1);
-                            cm.searchBestTypeAzure(ram1, pesNumber1, time, size1);
-                            
-                            time = cloudlet2.getFinishTime() - cloudlet2.getExecStartTime();
-                            cm.searchBestTypeAmazon(ram, pesNumber,time,size);
-                            cm.searchBestTypeGoogle(ram, pesNumber, time, size);
-                            cm.searchBestTypeAzure(ram, pesNumber, time, size);
-                            
-                            time = cloudlet3.getFinishTime() - cloudlet3.getExecStartTime();
-                            cm.searchBestTypeAmazon(ram1, pesNumber1,time,size1);
-                            cm.searchBestTypeGoogle(ram1, pesNumber1, time, size1);
-                            cm.searchBestTypeAzure(ram1, pesNumber1, time, size1);
-                        
-                        //---------------------------------------------------------------------------------------
-                        
-                        
+
+			// ---------------------------------------------------------------------------------------
+
+			CloudModule cm = new CloudModule();
+
+			double time = cloudlet.getFinishTime() - cloudlet.getExecStartTime();
+			cm.searchBestTypeAmazon(ram, pesNumber, time, size);
+			cm.searchBestTypeGoogle(ram, pesNumber, time, size);
+			cm.searchBestTypeAzure(ram, pesNumber, time, size);
+
+			time = cloudlet.getFinishTime() - cloudlet.getExecStartTime();
+			cm.searchBestTypeAmazon(ram1, pesNumber1, time, size1);
+			cm.searchBestTypeGoogle(ram1, pesNumber1, time, size1);
+			cm.searchBestTypeAzure(ram1, pesNumber1, time, size1);
+
+			time = cloudlet2.getFinishTime() - cloudlet2.getExecStartTime();
+			cm.searchBestTypeAmazon(ram, pesNumber, time, size);
+			cm.searchBestTypeGoogle(ram, pesNumber, time, size);
+			cm.searchBestTypeAzure(ram, pesNumber, time, size);
+
+			time = cloudlet3.getFinishTime() - cloudlet3.getExecStartTime();
+			cm.searchBestTypeAmazon(ram1, pesNumber1, time, size1);
+			cm.searchBestTypeGoogle(ram1, pesNumber1, time, size1);
+			cm.searchBestTypeAzure(ram1, pesNumber1, time, size1);
+
+			// ---------------------------------------------------------------------------------------
+
 			Log.printLine("CloudSimExample1 finished!");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -213,7 +213,8 @@ public class example1 {
 	/**
 	 * Creates the datacenter.
 	 *
-	 * @param name the name
+	 * @param name
+	 *            the name
 	 *
 	 * @return the datacenter
 	 */
@@ -231,7 +232,9 @@ public class example1 {
 		int mips = 18000;
 
 		// 3. Create PEs and add these into a list.
-		peList.add(new Pe(0, new PeProvisionerSimple(mips))); // need to store Pe id and MIPS Rating
+		peList.add(new Pe(0, new PeProvisionerSimple(mips))); // need to store
+																// Pe id and
+																// MIPS Rating
 
 		// 4. Create Host with its id and list of PEs and add them to the list
 		// of machines
@@ -240,16 +243,8 @@ public class example1 {
 		long storage = 1024000; // host storage = 1TB aprox.
 		int bw = 20000;
 
-		hostList.add(
-			new Host(
-				hostId,
-				new RamProvisionerSimple(ram),
-				new BwProvisionerSimple(bw),
-				storage,
-				peList,
-				new VmSchedulerTimeShared(peList)
-			)
-		); // This is our machine
+		hostList.add(new Host(hostId, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw), storage, peList,
+				new VmSchedulerTimeShared(peList))); // This is our machine
 
 		// 5. Create a DatacenterCharacteristics object that stores the
 		// properties of a data center: architecture, OS, list of
@@ -264,12 +259,14 @@ public class example1 {
 		double costPerStorage = 0.001; // the cost of using storage in this
 										// resource
 		double costPerBw = 0.0; // the cost of using bw in this resource
-		LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are not adding SAN
-													// devices by now
+		LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are
+																		// not
+																		// adding
+																		// SAN
+		// devices by now
 
-		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
-				arch, os, vmm, hostList, time_zone, cost, costPerMem,
-				costPerStorage, costPerBw);
+		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
+				cost, costPerMem, costPerStorage, costPerBw);
 
 		// 6. Finally, we need to create a PowerDatacenter object.
 		Datacenter datacenter = null;
@@ -304,7 +301,8 @@ public class example1 {
 	/**
 	 * Prints the Cloudlet objects.
 	 *
-	 * @param list list of Cloudlets
+	 * @param list
+	 *            list of Cloudlets
 	 */
 	private static void printCloudletList(List<Cloudlet> list) {
 		int size = list.size();
@@ -313,9 +311,8 @@ public class example1 {
 		String indent = "    ";
 		Log.printLine();
 		Log.printLine("========== OUTPUT ==========");
-		Log.printLine("Cloudlet ID" + indent + "STATUS" + indent
-				+ "Data center ID" + indent + "VM ID" + indent + "Time" + indent
-				+ "Start Time" + indent + "Finish Time");
+		Log.printLine("Cloudlet ID" + indent + "STATUS" + indent + "Data center ID" + indent + "VM ID" + indent + "Time"
+				+ indent + "Start Time" + indent + "Finish Time");
 
 		DecimalFormat dft = new DecimalFormat("###.##");
 		for (int i = 0; i < size; i++) {
@@ -325,12 +322,9 @@ public class example1 {
 			if (cloudlet.getCloudletStatus() == Cloudlet.SUCCESS) {
 				Log.print("SUCCESS");
 
-				Log.printLine(indent + indent + cloudlet.getResourceId()
-						+ indent + indent + indent + cloudlet.getVmId()
-						+ indent + indent
-						+ dft.format(cloudlet.getActualCPUTime()) + indent
-						+ indent + dft.format(cloudlet.getExecStartTime())
-						+ indent + indent
+				Log.printLine(indent + indent + cloudlet.getResourceId() + indent + indent + indent + cloudlet.getVmId()
+						+ indent + indent + dft.format(cloudlet.getActualCPUTime()) + indent + indent
+						+ dft.format(cloudlet.getExecStartTime()) + indent + indent
 						+ dft.format(cloudlet.getFinishTime()));
 			}
 		}
