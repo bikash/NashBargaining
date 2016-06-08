@@ -10,5 +10,7 @@
 	<classpathentry kind="lib" path="/home/bikash/repos/NashBargaining/lib/flanagan.jar"/>
 	<classpathentry kind="lib" path="/home/bikash/repos/NashBargaining/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar"/>
 	<classpathentry kind="lib" path="/home/bikash/repos/NashBargaining/lib/commons-math3-3.6.1/commons-math3-3.6.1-tools.jar"/>
+	<classpathentry kind="lib" path="/home/bikash/repos/NashBargaining/lib/xstream-1.4.7.jar"/>
+	<classpathentry kind="lib" path="/home/bikash/repos/NashBargaining/lib/jsoup-1.9.2.jar"/>
 	<classpathentry kind="output" path="cloudsim-3.0.3/bin"/>
 </classpath>
