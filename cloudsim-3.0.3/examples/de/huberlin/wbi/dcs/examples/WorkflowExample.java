@@ -121,32 +121,32 @@ public class WorkflowExample {
 		switch (Parameters.experiment) {
 		case MONTAGE_TRACE_1:
 			return new MontageTraceFileReader().parseLogFile(scheduler.getId(),
-					"examples/montage.m17.1.trace", true, true, ".*jpg");
+					"input/montage.m17.1.trace", true, true, ".*jpg");
 		case MONTAGE_TRACE_12:
 			return new MontageTraceFileReader().parseLogFile(scheduler.getId(),
-					"examples/montage.m17.12.trace", true, true, ".*jpg");
+					"input/montage.m17.12.trace", true, true, ".*jpg");
 		case ALIGNMENT_TRACE:
 			return new AlignmentTraceFileReader().parseLogFile(
-					scheduler.getId(), "examples/alignment.caco.geo.chr22.trace2", true,
+					scheduler.getId(), "input/alignment.caco.geo.chr22.trace2", true,
 					true, null);
 		case MONTAGE_25:
 			return new DaxFileReader().parseLogFile(scheduler.getId(),
-					"examples/Montage_25.xml", true, true, null);
+					"input/Montage_25.xml", true, true, null);
 		case MONTAGE_1000:
 			return new DaxFileReader().parseLogFile(scheduler.getId(),
-					"examples/Montage_1000.xml", true, true, null);
+					"input/Montage_1000.xml", true, true, null);
 		case CYBERSHAKE_1000:
 			return new DaxFileReader().parseLogFile(scheduler.getId(),
-					"examples/CyberShake_1000.xml", true, true, null);
+					"input/CyberShake_1000.xml", true, true, null);
 		case EPIGENOMICS_997:
 			return new DaxFileReader().parseLogFile(scheduler.getId(),
-					"examples/Epigenomics_997.xml", true, true, null);
+					"input/Epigenomics_997.xml", true, true, null);
 		case CUNEIFORM_VARIANT_CALL:
 			return new CuneiformLogFileReader().parseLogFile(scheduler.getId(),
-					"examples/i1_s11756_r7_greedyQueue.log", true, true, null);
+					"input/i1_s11756_r7_greedyQueue.log", true, true, null);
 		case HETEROGENEOUS_TEST_WORKFLOW:
 			return new CuneiformLogFileReader().parseLogFile(scheduler.getId(),
-					"examples/heterogeneous_test_workflow.log", true, true, null);
+					"input/heterogeneous_test_workflow.log", true, true, null);
 		}
 		return null;
 	}

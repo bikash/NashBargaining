@@ -215,7 +215,7 @@ public class MainExample {
 		switch (Parameters.experiment) {
 		case SINUSODIAL_CLOUDLET:
 			return new CloudletFileReader().parseLogFile(scheduler.getId(),
-					"examples/CloudletInput", true, true, ".*jpg");
+					"input/CloudletInput", true, true, ".*jpg");
 		default : 
 			Log.printLine("Wrong choice\n");
 			return null;
