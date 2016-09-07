@@ -92,9 +92,9 @@ public class CloudSimExample9 {
 		try {
 			// First step: Initialize the CloudSim package. It should be called
 			// before creating any entities.
-			int num_user = 2;   // number of grid users
+			int num_user = 100;   // number of grid users
 			Calendar calendar = Calendar.getInstance();
-			boolean trace_flag = false;  // mean trace events
+			boolean trace_flag = true;  // mean trace events
 
 			// Initialize the CloudSim library
 			CloudSim.init(num_user, calendar, trace_flag);
