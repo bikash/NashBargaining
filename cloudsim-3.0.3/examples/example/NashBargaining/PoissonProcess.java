@@ -3,6 +3,8 @@ package example.NashBargaining;
 import java.util.Random;
 
 /**
+ * 
+ * Simulates the arrival of customers using a Poisson Process.
  * Represents a Poisson Process that models the probability of an event
  * happens a number of times in a given time interval.
  * 
